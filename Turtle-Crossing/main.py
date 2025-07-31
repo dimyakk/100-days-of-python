@@ -35,6 +35,7 @@ while game_is_on:
             game_is_on = False
             scoreboard.game_over()
 
+    #Detects when the turtle crosses and moves to the next level
     if t.ycor() > 210:
         scoreboard.increase_level()
         t.reset_position()
