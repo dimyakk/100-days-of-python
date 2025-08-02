@@ -28,7 +28,7 @@ def play_game():
 
     #Reset the instances
     snake.reset()
-    scoreboard.reset()
+
     food.refresh()
 
     #Listen the screen to move the snake with keys
@@ -56,6 +56,7 @@ def play_game():
             if snake.head.distance(segment) < 0.1:
                 game_is_on = False
 
+    scoreboard.reset()
 # While loop to ask the player if he wants to continue playing or finish the game
 while True:
     play_game()
