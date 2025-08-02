@@ -42,6 +42,15 @@ class Snake:
             self.squares[square_num].goto(new_x, new_y)
         self.head.fd(MOVE_DISTANCE) #Move the head
 
+    #Method to reset the snake when game over
+    def reset(self):
+        for segment in self.squares:
+            segment.clear()
+            segment.hideturtle()
+        self.squares.clear()
+        self.create_snake()
+        self.head = self.squares[0]
+
     #Methods to directing the snake
     #Each method will have a condition: if the heading (the direction of the snake's head) is different from the
     #opposite direction to where we want to go, the movement occurs. This prevents the snake from reversing.
