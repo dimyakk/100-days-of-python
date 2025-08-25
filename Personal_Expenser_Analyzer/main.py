@@ -10,9 +10,10 @@ data = {}
 
 def sum_expenses(df):
     total_expenses = [float(expense.replace(",", ".")) for expense in df["Monto"].tolist()]
-    sum(total_expenses)
+    return sum(total_expenses)
 
 def filter_category():
+    transactions.delete(0,END)
     selection = combo.get()
     category_data = data[data["Categoría"] == selection]
     total_expenses_label.config(text=f"- Total Expenses: R${sum_expenses(category_data)}")
@@ -21,10 +22,13 @@ def filter_category():
         transactions.insert(END,f"{row["Fecha"]} | {row["Descripción"]}")
 
 def show_all():
+    transactions.delete(0,END)
     total_expenses_label.config(text=f"- Total Expenses: R${sum_expenses(data)}")
+    df = pd.DataFrame(data)
 
-    for _ in data.items():
-        print(_)
+    for i,r in df.iterrows():
+        transactions.insert(END, f"{r["Fecha"]} | {r["Descripción"]}")
+
 def read_csv_file(file_path):
 
     try:
